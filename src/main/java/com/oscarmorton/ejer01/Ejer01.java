@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Ejer01 {
-    public static Scanner lector;
+    private static Scanner lector;
     public Ejer01(){
         int[] numerosIntroducidos = pedirNumero();
         // Imprimo el array
