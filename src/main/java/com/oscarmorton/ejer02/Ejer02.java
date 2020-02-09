@@ -12,6 +12,7 @@ public class Ejer02 {
                 System.out.println(numeros[i]);
             }
         }
+        System.out.println("Numero de exceptiones: " + contadorExceptions);
 
 
 
@@ -47,7 +48,7 @@ public class Ejer02 {
                 System.out.println("Solo se puede introducir numeros");
                 contadorExceptions++;
             }
-        }while(numero >= 0);
+        }while(numero >= 0 && nNumeros < 10); // Sigo pidiendo numeros hasta que tengo 10 o hasta que el usuario introduce un numero negativo
 
 
         return numeros;
