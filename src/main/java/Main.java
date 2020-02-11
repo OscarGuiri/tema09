@@ -3,6 +3,7 @@ import com.oscarmorton.ejer02.Ejer02;
 import com.oscarmorton.ejer03.Ejer03;
 import com.oscarmorton.ejer04.Ejer04;
 import com.oscarmorton.ejer05.Ejer05;
+import com.oscarmorton.ejer06.Ejer06;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +11,8 @@ public class Main {
         //Ejer02 ejer2 = new Ejer02();
         //Ejer03 ejer3 = new Ejer03();
         //Ejer04 ejer4 = new Ejer04();
-        Ejer05 ejer5 = new Ejer05();
+        //Ejer05 ejer5 = new Ejer05();
+        Ejer06 ejer6 = new Ejer06();
 
 
 
