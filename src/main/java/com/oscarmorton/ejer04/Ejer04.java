@@ -5,16 +5,24 @@ import java.util.Scanner;
 
 
 public class Ejer04 {
+    private final int ARRAYLENGTH = 10;
     private static Scanner lector;
     public Ejer04(){
+        int[] numerosIntroducidos = pedirNumeros();
+        for(int i = 0; i < numerosIntroducidos.length; i++){
+            //No imprime los numeros 0 del array
+            if(numerosIntroducidos[i] > 0) {
+                System.out.println(numerosIntroducidos[i]);
+            }
+        }
 
 
     }
     public int[] pedirNumeros(){
         lector = new Scanner(System.in);
         int nNumeros = 0;
-        int arrayLength = 10;
-        int[] numerosIntroducidos = new int[arrayLength];
+
+        int[] numerosIntroducidos = new int[ARRAYLENGTH];
         boolean salir = false;
 
         //Primero ago que todos los numeros del array sean -1.
@@ -38,6 +46,10 @@ public class Ejer04 {
             }catch (NumberFormatException nfe){ //Si introduce algo que no es una letra, lo capturo y aviso al usuario.
                 System.out.println("Has introducido una letra");
                 salir = true;
+            }catch(IndexOutOfBoundsException iob){
+                System.out.println("El array está lleno");
+                salir = true;
+
             }
 
         }while(numero >= 0 && !salir);
