@@ -4,6 +4,7 @@ public class Ejer02 {
     public static Scanner lector;
     private int contadorExceptions = 0;
     public Ejer02(){
+        System.out.println("***Imprime un array de numeros introducidos y cuanta cuantas errores an sido introducidos");
         int[] numeros = new int[10];
         numeros = pedirNumeros(10);
         for(int i = 0; i < numeros.length; i++){

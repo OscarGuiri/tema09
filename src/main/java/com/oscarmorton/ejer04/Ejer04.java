@@ -21,7 +21,7 @@ public class Ejer04 {
     public int[] pedirNumeros(){
         lector = new Scanner(System.in);
         int nNumeros = 0;
-
+        boolean arrayCreada = true;
         int[] numerosIntroducidos = new int[ARRAYLENGTH];
         boolean salir = false;
 
@@ -50,6 +50,9 @@ public class Ejer04 {
                 System.out.println("El array está lleno");
                 salir = true;
 
+            }catch(NullPointerException npe){
+                System.out.println("El array no está creada");
+                arrayCreada = false;
             }
 
         }while(numero >= 0 && !salir);
