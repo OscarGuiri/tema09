@@ -14,12 +14,10 @@ public class Ejer09 {
 
         //Creo los objectos
 
-        NullPointExeptionTest n = new NullPointExeptionTest(arrayPruebaString);
-        IndexOutOfBoundsExceptionTest i = new IndexOutOfBoundsExceptionTest(arrayPruebaInts);
 
 
-        System.out.println(n);
-        System.out.println(i);
+
+
 
 
     }

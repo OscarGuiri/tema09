@@ -31,11 +31,12 @@ public class Ejer11 {
     private Alumno[] alumnos;
     private int contadorAlumnos;
     private Grupo[] grupos;
+    private final int DELAY = 500;
 
     private String[] nombres = {"Juan", "Isabel", "Pablo", "Sergio", "Rubén", "Alicia", "Ana", "María", "José", "Fernando", "Germán"};
     private String[] apellidos = {"Fernández", "Gutiérrez", "Ramírez", "Torregrosa", "Signes", "García", "Gallego", "Alonso", "Tormos"};
 
-    public Ejer11(int maxAlumnos, int nGrupos) {
+    public Ejer11(int maxAlumnos, int nGrupos) throws InterruptedException {
         lector = new Scanner(System.in);
         int opcion;
         alumnos = new Alumno[maxAlumnos];
@@ -63,7 +64,7 @@ public class Ejer11 {
         } while(opcion != 0);
     }
 
-    private void nuevoAlumno() {
+    private void nuevoAlumno() throws InterruptedException {
         boolean validado = false;
         int nia = 0;
         String nombre;
@@ -80,9 +81,12 @@ public class Ejer11 {
             System.out.println("*** NUEVO ALUMNO ***");
             do {
                 System.out.println("Nia: ");
+                Thread.sleep(DELAY);
+
                 try {
                     nia = Lib.aleatorio(1000000, 1099999);
                     validado = nia < 1999999 && nia > 0;
+                    System.out.println(nia);
                 }catch (NumberFormatException nfe){
                     System.out.println("Tienes que introducir una letra");
 
@@ -102,8 +106,10 @@ public class Ejer11 {
             } while (!validado);
 
             do {
+                Thread.sleep(DELAY);
                 System.out.println("Nombre: ");
                 nombre = nombres[Lib.aleatorio(0, nombres.length-1)];
+                System.out.println(nombre);
 
                 validado = nombre.length() > 2;
                 if (!validado) {
@@ -113,8 +119,10 @@ public class Ejer11 {
             } while (!validado);
 
             do {
+                Thread.sleep(DELAY);
                 System.out.println("Apellidos: ");
                 apellidos =  nombres[Lib.aleatorio(0, nombres.length-1)];
+                System.out.println(apellidos);
                 validado = apellidos.length() > 2;
                 if (!validado) {
                     System.out.println("Apellidos debe tener almenos 2 caracteres");
@@ -123,6 +131,7 @@ public class Ejer11 {
             } while (!validado);
 
             do {
+                Thread.sleep(DELAY);
                 System.out.println("Fecha nacimiento (dd-mm-yyyy): ");
 
 
@@ -141,6 +150,7 @@ public class Ejer11 {
             } while (!validado);
 
             do {
+                Thread.sleep(DELAY);
                 int i;
                 System.out.println("Grupos disponibles");
                 for (i = 0; i < grupos.length; i++) {
@@ -150,6 +160,7 @@ public class Ejer11 {
 
                 try {
                      codigo = Lib.aleatorio(1, 5);
+                    System.out.println(codigo);
                 }catch (NumberFormatException nfe){
                     System.out.println("Introduce un numero");
                 }
@@ -168,9 +179,11 @@ public class Ejer11 {
             } while (!validado);
 
             do {
+                Thread.sleep(DELAY);
                 System.out.println("Teléfono: ");
                 try {
-                    telefono = Long.parseLong(lector.nextLine());
+                    telefono =  Lib.aleatorio(965700000, 965799999);
+                    System.out.println(telefono);
                 }catch (NumberFormatException nfe){
                     System.out.println("El numero de telefono tiene que ser un numero");
                 }
@@ -431,11 +444,13 @@ public class Ejer11 {
             System.out.println("----------------");
             System.out.println("0. Volver al menú principal\n");
             System.out.println("Elija una opción: ");
+
             try {
                 opcion = Integer.parseInt(lector.nextLine());
             }catch (NullPointerException npe){
                 System.out.println("Por favor, introduce una opcion valida");
             }
+
             if(opcion < 0 || opcion > 5) {
                 System.out.println("Elija una opción del menú [0-5]");
                 Lib.pausa();
