@@ -13,11 +13,11 @@ public class Ejer09 {
         arrayPruebaString[2] = "Squirtle";
 
         //Creo los objectos
-        ArithmeticExeptionTest a = new ArithmeticExeptionTest(arrayPruebaInts);
+
         NullPointExeptionTest n = new NullPointExeptionTest(arrayPruebaString);
         IndexOutOfBoundsExceptionTest i = new IndexOutOfBoundsExceptionTest(arrayPruebaInts);
 
-        System.out.println(a);
+
         System.out.println(n);
         System.out.println(i);
 

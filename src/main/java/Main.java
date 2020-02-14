@@ -8,6 +8,7 @@ import com.oscarmorton.ejer07.Ejer07;
 import com.oscarmorton.ejer08.Ejer08;
 import com.oscarmorton.ejer09.Ejer09;
 import com.oscarmorton.ejer10.Ejer10;
+import com.oscarmorton.ejer11.Ejer11;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -20,7 +21,8 @@ public class Main {
        // Ejer07 ejer7 = new Ejer07();
         //Ejer08 ejer8 = new Ejer08();
        // Ejer09 ejer9 = new Ejer09(); FALLA!!
-        Ejer10 ejer10 = new Ejer10();
+        //Ejer10 ejer10 = new Ejer10();
+        Ejer11 ejer11 = new Ejer11(100, 5);
 
 
 

@@ -73,6 +73,7 @@ public class Ejer11 {
         Grupo grupo = null;
         long telefono = 0;
         Lib.limpiarPantalla();
+        int codigo = -1;
 
         if(contadorAlumnos < alumnos.length) {
 
@@ -80,7 +81,7 @@ public class Ejer11 {
             do {
                 System.out.println("Nia: ");
                 try {
-                    nia = Integer.parseInt(lector.nextLine());
+                    nia = Lib.aleatorio(1000000, 1099999);
                     validado = nia < 1999999 && nia > 0;
                 }catch (NumberFormatException nfe){
                     System.out.println("Tienes que introducir una letra");
@@ -102,7 +103,7 @@ public class Ejer11 {
 
             do {
                 System.out.println("Nombre: ");
-                nombre = lector.nextLine();
+                nombre = nombres[Lib.aleatorio(0, nombres.length-1)];
 
                 validado = nombre.length() > 2;
                 if (!validado) {
@@ -113,7 +114,7 @@ public class Ejer11 {
 
             do {
                 System.out.println("Apellidos: ");
-                apellidos = lector.nextLine();
+                apellidos =  nombres[Lib.aleatorio(0, nombres.length-1)];
                 validado = apellidos.length() > 2;
                 if (!validado) {
                     System.out.println("Apellidos debe tener almenos 2 caracteres");
@@ -123,7 +124,9 @@ public class Ejer11 {
 
             do {
                 System.out.println("Fecha nacimiento (dd-mm-yyyy): ");
-                fechaNacimientoString = lector.nextLine();
+
+
+                fechaNacimientoString = lector.nextLine(); // Con duda como generar datos aleatorios
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     Date date = sdf.parse(fechaNacimientoString);
@@ -144,7 +147,12 @@ public class Ejer11 {
                     System.out.println("Código: " + grupos[i].getCodigo() + ", nombre: " + grupos[i].getNombre());
                 }
                 System.out.println("Código del grupo: ");
-                int codigo = Integer.parseInt(lector.nextLine());
+
+                try {
+                     codigo = Lib.aleatorio(1, 5);
+                }catch (NumberFormatException nfe){
+                    System.out.println("Introduce un numero");
+                }
                 validado = false;
                 i = 0;
                 /** Buscamos que el código que ha introducido el usuario corresponde a un grupo válido **/
@@ -228,6 +236,12 @@ public class Ejer11 {
     private void consultas() {
         int opcion = -1;
         int i;
+        int codigo = 0;
+        int edad = 0;
+        int nia = 0;
+        boolean valido = false;
+        String apellidos = "";
+
         do {
             try {
                 opcion = menuConsultas();
@@ -237,14 +251,22 @@ public class Ejer11 {
             switch (opcion) {
                 case 1:
                     //Por grupo
-                    int codigo;
+
                     Alumno[] alumnosGrupo;
                     System.out.println("Grupos disponibles");
                     for (i = 0; i < grupos.length; i++) {
                         System.out.println("Código: " + grupos[i].getCodigo() + ", nombre: " + grupos[i].getNombre());
                     }
                     System.out.println("Código del grupo: ");
-                    codigo = Integer.parseInt(lector.nextLine());
+                    do {
+                        try {
+                            codigo = Integer.parseInt(lector.nextLine());
+                            valido = true;
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Introduce un valor valido");
+                        }
+                    }while(!valido);
+                    valido = false;
                     alumnosGrupo = buscarAlumnoPorGrupo(codigo);
                     if (alumnosGrupo != null) {
                         for (i = 0; i < alumnosGrupo.length; i++) {
@@ -257,10 +279,18 @@ public class Ejer11 {
                     break;
                 case 2:
                     //Por edad
-                    int edad;
+
                     Alumno[] alumnosEdad;
                     System.out.println("Edad: ");
-                    edad = Integer.parseInt(lector.nextLine());
+                    do {
+                        try {
+                            edad = Integer.parseInt(lector.nextLine());
+                            valido = true;
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Intoduce valor valido");
+                        }
+                    }while(!valido);
+                    valido = false;
                     alumnosEdad = buscarAlumnoPorEdad(edad);
                     if (alumnosEdad != null) {
                         for (i = 0; i < alumnosEdad.length; i++) {
@@ -273,9 +303,17 @@ public class Ejer11 {
                     break;
                 case 3:
                     //Por nia
-                    int nia;
+
                     System.out.println("Nia: ");
-                    nia = Integer.parseInt(lector.nextLine());
+                    do {
+                        try {
+                            nia = Integer.parseInt(lector.nextLine());
+                            valido = true;
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Introduce un valor valido");
+                        }
+                    }while(!valido);
+                    valido = false;
                     int pos = buscarAlumnoPorNia(nia);
                     if(pos >= 0) {
                         System.out.println(alumnos[pos].toString());
@@ -286,10 +324,14 @@ public class Ejer11 {
                     break;
                 case 4:
                     //Por apellidos
-                    String apellidos;
+
                     Alumno[] alumnosApellidos;
                     System.out.println("Apellidos: ");
-                    apellidos = lector.nextLine();
+                    try {
+                        apellidos = lector.nextLine();
+                    }catch (InputMismatchException ime){
+                        System.out.println("Introduce un valor");
+                    }
                     alumnosApellidos = buscarAlumnoPorApellidos(apellidos);
                     if (alumnosApellidos != null) {
                         for (i = 0; i < alumnosApellidos.length; i++) {
@@ -389,7 +431,11 @@ public class Ejer11 {
             System.out.println("----------------");
             System.out.println("0. Volver al menú principal\n");
             System.out.println("Elija una opción: ");
-            opcion = Integer.parseInt(lector.nextLine());
+            try {
+                opcion = Integer.parseInt(lector.nextLine());
+            }catch (NullPointerException npe){
+                System.out.println("Por favor, introduce una opcion valida");
+            }
             if(opcion < 0 || opcion > 5) {
                 System.out.println("Elija una opción del menú [0-5]");
                 Lib.pausa();
@@ -503,4 +549,5 @@ public class Ejer11 {
         }
         return alumnosApellidos;
     }
+
 }
